@@ -1,1 +1,46 @@
+class SelSort:
+     def SelectSort(self,lst1, count):
+        for i in range(count):
+            min=i
+            for j in range(i+1,count):
+             if (lst1[j].lower())<(lst1[min].lower()):
+                min=j
+            lst1[i],lst1[min]=lst1[min],lst1[i]
 
+        return lst1      
+     
+class BinSearch:
+   def BinarySearch(self,lst2,word):
+     start = 0
+     end = len(lst2) - 1
+
+     while start <= end:
+        mid = (start + end) // 2
+        if (lst2[mid].lower()) == (word.lower()):
+           #disregarding capitalization of search word or the list
+           return mid
+        elif lst2[mid] < word:
+           start=mid+1
+        else:
+           end=mid-1
+     return -1      
+
+
+num=int(input("Enter number of strings to be inputted: "))
+lst=[]
+print("Enter text: ")
+for i in range(num):
+    lst_inp=input("")
+    lst.append(lst_inp)
+
+a=SelSort()
+SortList=a.SelectSort(lst,num)
+print(SortList)
+
+find_word =input("Enter word to be found ")
+b=BinSearch() 
+Search=b.BinarySearch(SortList,find_word)
+if Search == -1:
+   print("Word not found")
+else:
+    print("Word found at index",Search)
