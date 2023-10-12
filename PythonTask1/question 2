@@ -1,1 +1,22 @@
+class SelSort:
+     def SelectSort(self,lst1, count):
+        for i in range(count):
+            min=i
+            for j in range(i+1,count):
+             if (lst1[j].lower())<(lst1[min].lower()):
+                    #Capitilisation in string is disregarded
+                min=j
+            lst1[i],lst1[min]=lst1[min],lst1[i]
 
+        return lst1      
+
+num=int(input("Enter number of strings to be inputted: "))
+lst=[]
+print("Enter text: ")
+for i in range(num):
+    lst_inp=input("")
+    lst.append(lst_inp)
+print("Original List",lst)    
+
+a=SelSort()
+print("Sorted List",a.SelectSort(lst,num))
