@@ -1,1 +1,53 @@
+def MatrixMulti(A, B):
+    if len(A[0]) != len(B):
+        print("Matrix Multiplication is not possible")
+    else:
+        print("The dimension of the result is", len(A),"x",len(B[0]))
+        result = []
+        for i in range(len(A)):
+            row = []
+            for j in range(len(B[0])):
+                col = 0
+                for k in range(len(B)):
+                    col += A[i][k] * B[k][j]
+                row.append(col)
+            result.append(row)
+        for row in result:
+         print(row)
 
+
+R1=int(input("Enter the number of rows for matrix 1 "))
+C1=int(input("Enter the number of columns for matrix 1 "))
+Matrix1=[]
+
+for i in range(R1):
+  Row=[]
+  print("Enter row",(i+1),"elements")
+  for j in range(C1):
+    Row.append(int(input()))
+  Matrix1.append(Row)
+
+print("Matrix 1")
+for i in range(R1):
+  for j in range(C1):
+        print(Matrix1[i][j],end=" ")
+  print()
+
+R2=int(input("Enter the number of rows for matrix 2 "))
+C2=int(input("Enter the number of columns for matrix 2 "))
+Matrix2=[]
+
+for i in range(R2):
+  Row=[]
+  print("Enter row",(i+1),"elements")
+  for j in range(C2):
+    Row.append(int(input()))
+  Matrix2.append(Row)
+
+print("Matrix 2")
+for i in range(R2):
+  for j in range(C2):
+        print(Matrix2[i][j],end=" ")
+  print()
+
+MatrixMulti(Matrix1,Matrix2)
