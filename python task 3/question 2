@@ -1,1 +1,28 @@
+import csv
 
+details=[]
+
+cnt=int(input("Enter the number of details to be entered "))
+for i in range(cnt):
+    row=[]
+    for j in range(2):
+     if j==0:
+      print("Enter Number of person",(i+1))
+      row.append(int(input("")))
+     else:
+      print("Enter Name of person",(i+1))
+      row.append(input(""))
+    details.append(row)
+
+f=open("names.csv","r+",newline="")
+writer=csv.writer(f)
+writer.writerows(details)
+f.seek(0)
+
+reader = csv.reader(f)
+
+data = list(reader)
+data.sort(key=lambda r: int(r[0]))
+print("Sorted data",data)
+
+f.close()
