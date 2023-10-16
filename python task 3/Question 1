@@ -1,1 +1,39 @@
 
+import math
+
+def sort_pnt(reference, compare):
+    distances = []  
+    for i in range(len(compare)):
+        point = compare[i]
+        dist = (math.dist(reference,point)) 
+        print("The distance between reference ",reference," and","point", point," is %.4f"%dist)
+        distances.append((i, dist))
+
+    distances.sort(key=lambda x: x[1])
+    sorted_points = []
+    for i, _ in distances:
+     sorted_points.append(compare[i])
+
+    return sorted_points
+
+points = int(input("Enter the number of points to compare "))
+Ref = []
+
+print("Enter the reference point")
+for i in range(2):
+    Ref.append(float(input("")) )
+print("The Reference point is", Ref)
+
+comp_point = []
+print('Enter the points to compare')
+for i in range(points):
+    Row = []
+    print("Enter point", (i + 1))
+    for j in range(2):
+        Row.append(float(input("")))
+    comp_point.append(Row)
+
+print("Points to compare are", comp_point)
+sorted_points = sort_pnt(Ref, comp_point)
+print("The sorted list of points is", sorted_points)
+
