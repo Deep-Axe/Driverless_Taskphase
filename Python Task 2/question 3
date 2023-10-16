@@ -1,1 +1,24 @@
+n = int(input("Enter the count of numbers to be inputed "))
+hash=[]
+for i in range(10):
+ hash.append([]) 
 
+def Sort(list, n):
+    start, end = 0, len(list)
+    while start < end:
+        centre = (start + end) // 2
+        if n < list[centre]:
+            end = centre
+        else:
+            start = centre + 1
+    list.insert(start, n)
+   
+
+for j in range(n):
+    print("Enter integer",(j+1))
+    num = int(input(""))
+    ind = num % 10
+    Sort(hash[ind],num)
+
+for i in range(len(hash)):
+    print("Index", i, hash[i])
