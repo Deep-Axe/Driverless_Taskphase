@@ -1,1 +1,13 @@
+n = int(input("Enter the count of numbers to be inputed "))
+hash=[]
+for i in range(10):
+ hash.append([]) 
 
+for j in range(n):
+    print("Enter integer",(j+1))
+    num = int(input(""))
+    ind = num % 10
+    hash[ind].append(num)
+
+for i in range(len(hash)):
+    print("Index", i, hash[i])
