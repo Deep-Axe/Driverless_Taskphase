@@ -14,12 +14,13 @@ for i in range(cnt):
       row.append(input(""))
     details.append(row)
 
-f=open("names.csv","r+",newline="")
+f=open("names.csv","w",newline="")
 writer=csv.writer(f)
 writer.writerows(details)
 f.seek(0)
 
-reader = csv.reader(f)
+d=open("names.csv","r",newline="")
+reader = csv.reader(d)
 
 data = list(reader)
 data.sort(key=lambda r: int(r[0]))
