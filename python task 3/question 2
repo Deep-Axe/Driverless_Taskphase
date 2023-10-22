@@ -1,7 +1,6 @@
 import csv
 
 details=[]
-
 cnt=int(input("Enter the number of details to be entered "))
 for i in range(cnt):
     row=[]
@@ -14,16 +13,37 @@ for i in range(cnt):
       row.append(input(""))
     details.append(row)
 
-f=open("names.csv","w",newline="")
-writer=csv.writer(f)
-writer.writerows(details)
-f.seek(0)
+with open("names.csv","w",newline="") as f:
+ writer=csv.writer(f)
+ writer.writerows(details)
 
-d=open("names.csv","r",newline="")
-reader = csv.reader(d)
+with open("names.csv","r",newline="") as d:
+ reader = csv.reader(d)
+ data = list(reader)
+ data.sort(key=lambda r: int(r[0]))
+ print("Sorted data",data)
 
-data = list(reader)
-data.sort(key=lambda r: int(r[0]))
-print("Sorted data",data)
+mod_data=data[1::2]
+#removing odd row, not odd index
+with open("names.csv", "w", newline="") as f:
+    writer = csv.writer(f)
+    writer.writerows(mod_data)
 
-f.close()
+with open("names.csv", "r", newline="") as d:
+    reader = csv.reader(d)
+    mod = list(reader)
+    print(mod)
+
+
+name = ''.join([row[1] for row in mod_data])
+name = name.replace(" ", "")
+name= name.strip()
+
+if len(name) <2:
+  print("Smallest differnce of ascii is 0 ")
+else:
+ uniq_ch=set(name.lower())
+ uniq_ch=sorted(uniq_ch)
+
+ min_dif=ord(uniq_ch[1])-ord(uniq_ch[0])
+print("Smallest unqiue difference of ASCII ",min_dif)  
