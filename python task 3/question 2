@@ -20,8 +20,14 @@ with open("names.csv","w",newline="") as f:
 with open("names.csv","r",newline="") as d:
  reader = csv.reader(d)
  data = list(reader)
- data.sort(key=lambda r: int(r[0]))
- print("Sorted data",data)
+ n = len(data)
+ for i in range(n):
+    min_index = i
+    for j in range(i + 1, n):
+      if int(data[j][0]) < int(data[min_index][0]):
+       min_index = j    
+    data[i], data[min_index] = data[min_index], data[i]
+
 
 mod_data=data[1::2]
 #removing odd row, not odd index
@@ -42,8 +48,14 @@ name= name.strip()
 if len(name) <2:
   print("Smallest differnce of ascii is 0 ")
 else:
- uniq_ch=set(name.lower())
- uniq_ch=sorted(uniq_ch)
-
- min_dif=ord(uniq_ch[1])-ord(uniq_ch[0])
-print("Smallest unqiue difference of ASCII ",min_dif)  
+ uniq_ch=sorted(set(name.lower()))
+ min_dif=26
+ #the greatest differnce between 2 characters can only be 26, assuming only english letters are being inputed
+ for i in range(len(uniq_ch)-1):
+    if ord(uniq_ch[i+1])-ord(uniq_ch[i])<min_dif:
+     min_dif=ord(uniq_ch[i+1])-ord(uniq_ch[i])
+ 
+ if min_dif==27:
+   print("All characters are the same")
+ else:
+  print("Smallest difference of ASCII ",min_dif)   
